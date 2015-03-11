@@ -60,7 +60,7 @@ def SexGroup(data):
 
         
 ## Creating income groups
-def IncomeGroup(data.income):
+def IncomeGroup(data):
     incomegroups = [[0,0,0,0,0,0,0,0,0,0,0,0,0],('nan','<1k','1k-3k','3k-4k','4k-5k','5k-6k','6k-7k','7k-8k','8k-10k','10k-15k','15k-20k','20k-25k','>25k')]
     for income in data.income:
         if income == 'nan':
@@ -135,9 +135,9 @@ def PlotIncome(data):
 
 PlotAgeSexRace(data)
 PlotIncome(data)
-=======
+
 ## Marital status
-def maritalstatus(data.marital):
+def maritalstatus(data):
     
     marriage = [[0,0,0,0,0], ('Never married', 'Divorced', 'Married', 'Separated', 'Widowed')]
     for marital in data.marital:
@@ -153,7 +153,7 @@ def maritalstatus(data.marital):
             marriage[0][4] += 1
     return marriage
 ## Sexual orientation
-def sexualorientation(data.sexornt):
+def sexualorientation(data):
     
     orientation = [[0,0,0,0], ('nan','bi','gay','straight')
     for ornt in data.sexornt:
@@ -167,7 +167,7 @@ def sexualorientation(data.sexornt):
             orientation[0][3] +=1        
     return orientation
     
-def degree(data.degree):
+def degree(data):
     degree = [[0, 0, 0, 0, 0], ('High school', 'Junior college', 'LT high school', 'bachelor', 'graduate')]
     for degree in data.degree:
         if degree == 'HIGH SCHOOL':
@@ -182,7 +182,7 @@ def degree(data.degree):
             degree[0][4] += 1
     return degree
             
-def religion(data.relig):
+def religion(data):
     religions[[0,0,0,0,0,0]("Christian","Jewish","Hinduism/Buddhism", "Islam","Other", "none")]
     for religion in data.relig:
         if religion == "ORTHODOX-CHRISTIAN" or religion == "catholic" or religion == "christian" or religion == "protestant":
