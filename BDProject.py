@@ -61,62 +61,100 @@ def SexGroup(data.sex):
         
 ## Creating income groups
 def IncomeGroup(data.income):
-    incomegroups = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+    incomegroups = [[0,0,0,0,0,0,0,0,0,0,0,0,0],('nan','<1k','1k-3k','3k-4k','4k-5k','5k-6k','6k-7k','7k-8k','8k-10k','10k-15k','15k-20k','20k-25k','>25k')]
     for income in data.income:
         if income == 'nan':
-            incomegroups[0] += 1
+            incomegroups[0][0] += 1
         elif income == 'LT $1000':
-            incomegroups[1] += 1
+            incomegroups[0][1] += 1
         elif income == '$1000 TO 2999':
-            incomegroups[2] += 1
+            incomegroups[0][2] += 1
         elif income == '$3000 TO 3999':
-            incomegroups[3] += 1
+            incomegroups[0][3] += 1
         elif income == '$4000 TO 4999':
-            incomegroups[4] += 1
+            incomegroups[0][4] += 1
         elif income == '$5000 TO 5999':
-            incomegroups[5] += 1
+            incomegroups[0][5] += 1
         elif income == '$6000 TO 6999':
-            incomegroups[6] += 1
+            incomegroups[0][6] += 1
         elif income == '$7000 TO 7999':
-            incomegroups[7] += 1
+            incomegroups[0][7] += 1
         elif income == '$8000 TO 9999':
-            incomegroups[8] += 1
+            incomegroups[0][8] += 1
         elif income == '$10000 - 14999':
-            incomegroups[9] += 1
+            incomegroups[0][9] += 1
         elif income == '$15000 - 19999':
-            incomegroups[10] += 1
+            incomegroups[0][10] += 1
         elif income == '$20000 - 24999':
-            incomegroups[11] += 1
+            incomegroups[0][11] += 1
         elif income == '$25000 OR MORE':
-            incomegroups[12] += 1
+            incomegroups[0][12] += 1
             
     return incomegroups
         
 ## Marital status
-marriage = [0,0,0,0,0]
-for marital in data.marital:
-    if marital == 'NEVER MARRIED':
-        marriage[0] += 1
-    if marital == 'divorced':
-        marriage[1] += 1
-    if marital == 'married':
-        marriage[2] += 1
-    if marital == 'separated':
-        marriage[3] += 1
-    if marital == 'widowed':
-        marriage[4] += 1
+def maritalstatus(data.marital):
+    
+    marriage = [[0,0,0,0,0], ('Never married', 'Divorced', 'Married', 'Separated', 'Widowed')]
+    for marital in data.marital:
+        if marital == 'NEVER MARRIED':
+            marriage[0][0] += 1
+        if marital == 'divorced':
+            marriage[0][1] += 1
+        if marital == 'married':
+            marriage[0][2] += 1
+        if marital == 'separated':
+            marriage[0][3] += 1
+        if marital == 'widowed':
+            marriage[0][4] += 1
+    return marriage
 ## Sexual orientation
-orientation = [0,0,0,0]
-for ornt in data.sexornt:
-    if ornt == 'nan':
-        orientation[0] +=1
-    if ornt == 'Bisexual':
-        orientation[1] +=1
-    if ornt == 'Gay, lesban, or homosexual':
-        orientation[2] +=1
-    if ornt == 'Heterosexual or straight':
-        orientation[3] +=1        
-
+def sexualorientation(data.sexornt):
+    
+    orientation = [[0,0,0,0], ('nan','bi','gay','straight')
+    for ornt in data.sexornt:
+        if ornt == 'nan':
+            orientation[0][0] +=1
+        if ornt == 'Bisexual':
+            orientation[0][1] +=1
+        if ornt == 'Gay, lesban, or homosexual':
+            orientation[0][2] +=1
+        if ornt == 'Heterosexual or straight':
+            orientation[0][3] +=1        
+    return orientation
+    
+def degree(data.degree):
+    degree = [[0, 0, 0, 0, 0], ('High school', 'Junior college', 'LT high school', 'bachelor', 'graduate')]
+    for degree in data.degree:
+        if degree == 'HIGH SCHOOL':
+            degree[0][0] += 1
+        if degree == 'JUNIOR COLLEGE':
+            degree[0][1] += 1
+        if degree == 'LT HIGH SCHOOL':
+            degree[0][2] += 1
+        if degree == 'bachelor':
+            degree[0][3] += 1
+        if degree == 'graduate':
+            degree[0][4] += 1
+    return degree
+            
+def religion(data.relig):
+    religions[[0,0,0,0,0,0]("Christian","Jewish","Hinduism/Buddhism", "Islam","Other", "none")]
+    for religion in data.relig:
+        if religion == "ORTHODOX-CHRISTIAN" or religion == "catholic" or religion == "christian" or religion == "protestant":
+            religions[0][0] += 1
+        if religion == "jewish":
+            religions[0][1] += 1
+        if religion == "buddhism" or religion == "hinduism":
+            religions[0][2] += 1
+        if religion == "MOSLEM/ISLAM":
+            religions[0][3] += 1
+        if religion == "none":
+            religions[0][5] += 1
+        else:
+            religions[0][4] += 1
+            
+    return religions
 
 
 plt.figure(1,(5,8))        
