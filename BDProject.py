@@ -10,6 +10,7 @@ This is a temporary script file.
 import pandas as pd
 import scipy as sp
 import matplotlib.pyplot as plt
+import numpy as np
 
 data = pd.io.stata.read_stata("GSS2012.DTA")
 
@@ -91,6 +92,48 @@ def IncomeGroup(data):
             incomegroups[0][12] += 1
             
     return incomegroups
+
+
+def PlotAgeSexRace(data): 
+    '''Returns 3 plots with age, sex, and race distributions.
+        TO DO: make the y-axis go up to 1.0 '''
+    age = AgeGroup(data)
+    sex = SexGroup(data)
+    race = RaceGroup(data)
+    
+    # Figure size
+    plt.figure(1,(5,8))
+        
+    ageplot = plt.subplot(3,1,1)
+    ageplot.bar(range(10,90), age)
+    # Labels for age plot
+    ageplot.title("Age Distribution")
+    ageplot.xlabel("age")
+    ageplot.ylabel("frequency")
+    
+    sexplot = plt.subplot(3,1,2)
+    sexplot.bar([1,2], [sex[0], sex[1]])
+    # labels for sex plot
+    sexplot.title("Gender Distribution")
+    sexplot.xticks([1.5,2.5], ("Male", "Female"))
+    sexplot.ylabel("frequency")
+    
+    raceplot = plt.subplot(3,1,3)
+    raceplot.bar([1,2,3], [race[0], race[1], race[2]], 0.5)
+    raceplot.xticks([1.25,2.25,3.25], ('White', 'Black', 'Other'))
+    raceplot.title("Race Distribution")      
+    raceplot.ylabel("frequency")
+
+def PlotIncome(data):
+    '''Returns a plot with income distribution.'''
+    incomegroups = IncomeGroup(data)
+    
+    # Figure size
+    plt.figure(2,(9,5))
+    
+    plt.bar(range(0,13,1), incomegroups[0], 1)
+    plt.xticks(np.arange(0.5,12.5,1), incomegroups[1])
+
 
 ## Marital status
 def maritalstatus(data):
