@@ -48,8 +48,8 @@ for sex in data.sex:
         female += 1
 maleprop = float(male) / float((male+female))
 femaleprop = float(female) / float((male+female))        
-print femaleprop
-print whiteprop    
+##print femaleprop
+##print whiteprop    
         
 ## Creating income groups
 incomegroups = [0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -81,7 +81,7 @@ for income in data.income:
     elif income == '$25000 OR MORE':
         incomegroups[12] += 1
         
-plt.figure(1,(5,6))        
+plt.figure(1,(5,8))        
 plt.subplot(3,1,1)
 plt.bar(range(10,90), agecounts)
 plt.title("Age Distribution")
@@ -89,14 +89,14 @@ plt.xlabel("age")
 plt.ylabel("frequency")
 plt.subplot(3,1,2)
 plt.bar([1,2], [maleprop, femaleprop])
-plt.ylim(1)
+##plt.ylim(1)
 plt.title("Gender Distribution")
 plt.xticks([1.5,2.5], ("Male", "Female"))
 plt.ylabel("frequency")
 plt.subplot(3,1,3)
 plt.bar([1,2,3], [whiteprop, blackprop, otherprop], 0.5)
 plt.xticks([1.25,2.25,3.25], ('White', 'Black', 'Other'))
-plt.ylim(1)
+##plt.ylim(1)
 plt.title("Race Distribution")      
 plt.ylabel("frequency")
 #plt.tight_layout
