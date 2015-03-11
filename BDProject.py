@@ -10,6 +10,7 @@ This is a temporary script file.
 import pandas as pd
 import scipy as sp
 import matplotlib.pyplot as plt
+import numpy as np
 
 data = pd.io.stata.read_stata("GSS2012.DTA")
 
@@ -123,15 +124,14 @@ def PlotAgeSexRace(data):
     raceplot.ylabel("frequency")
 
 def PlotIncome(data):
-    '''Returns a plot with income distribution.
-        TO DO: clear up x-axis labeling '''
+    '''Returns a plot with income distribution.'''
     incomegroups = IncomeGroup(data)
     
     # Figure size
     plt.figure(2,(9,5))
     
-    plt.bar(range(0,13,1), incomegroups, 1)
-    plt.xticks([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5, 12.5], ('nan','<1k','1k-3k','3k-4k','4k-5k','5k-6k','6k-7k','7k-8k','8k-10k','10k-15k','15k-20k','20k-25k','>25k'))
+    plt.bar(range(0,13,1), incomegroups[0], 1)
+    plt.xticks(np.arange(0.5,12.5,1), incomegroups[1])
 
 PlotAgeSexRace(data)
 PlotIncome(data)
