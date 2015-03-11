@@ -155,7 +155,7 @@ def maritalstatus(data):
 ## Sexual orientation
 def sexualorientation(data):
     
-    orientation = [[0,0,0,0], ('nan','bi','gay','straight')
+    orientation = [[0,0,0,0], ('nan','bi','gay','straight')]
     for ornt in data.sexornt:
         if ornt == 'nan':
             orientation[0][0] +=1
