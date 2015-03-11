@@ -183,7 +183,7 @@ def degree(data):
     return degree
             
 def religion(data):
-    religions[[0,0,0,0,0,0]("Christian","Jewish","Hinduism/Buddhism", "Islam","Other", "none")]
+    religions = [[0,0,0,0,0,0],("Christian","Jewish","Hinduism/Buddhism", "Islam","Other", "none")]
     for religion in data.relig:
         if religion == "ORTHODOX-CHRISTIAN" or religion == "catholic" or religion == "christian" or religion == "protestant":
             religions[0][0] += 1
@@ -204,10 +204,10 @@ def religion(data):
 plt.figure(3, (5,7))
 plt.subplot(2,1,1)
 plt.title("Marital Status")
-plt.bar([0, 1, 2, 3, 4], marriage)
+##plt.bar([0, 1, 2, 3, 4], marriage)
 plt.xticks([0.5,1.5,2.5,3.5,4.5],("Never married","divorced","married","separated","widowed"))
 plt.subplot(2,1,2)
 plt.title("Sexual orientation")
-plt.bar([0,1,2,3],orientation)
+##plt.bar([0,1,2,3],orientation)
 plt.xticks([0.5,1.5,2.5,3.5], ("nan","Bi","gay","straigt"))
 
