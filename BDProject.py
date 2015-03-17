@@ -94,47 +94,6 @@ def IncomeGroup(data):
     return incomegroups
 
 
-def PlotAgeSexRace(data): 
-    '''Returns 3 plots with age, sex, and race distributions.
-        TO DO: make the y-axis go up to 1.0 '''
-    age = AgeGroup(data)
-    sex = SexGroup(data)
-    race = RaceGroup(data)
-    
-    # Figure size
-    plt.figure(1,(5,8))
-        
-    ageplot = plt.subplot(3,1,1)
-    ageplot.bar(range(10,90), age)
-    # Labels for age plot
-    ageplot.title("Age Distribution")
-    ageplot.xlabel("age")
-    ageplot.ylabel("frequency")
-    
-    sexplot = plt.subplot(3,1,2)
-    sexplot.bar([1,2], [sex[0], sex[1]])
-    # labels for sex plot
-    sexplot.title("Gender Distribution")
-    sexplot.xticks([1.5,2.5], ("Male", "Female"))
-    sexplot.ylabel("frequency")
-    
-    raceplot = plt.subplot(3,1,3)
-    raceplot.bar([1,2,3], [race[0], race[1], race[2]], 0.5)
-    raceplot.xticks([1.25,2.25,3.25], ('White', 'Black', 'Other'))
-    raceplot.title("Race Distribution")      
-    raceplot.ylabel("frequency")
-
-def PlotIncome(data):
-    '''Returns a plot with income distribution.'''
-    incomegroups = IncomeGroup(data)
-    
-    # Figure size
-    plt.figure(2,(9,5))
-    
-    plt.bar(range(0,13,1), incomegroups[0], 1)
-    plt.xticks(np.arange(0.5,12.5,1), incomegroups[1])
-
-
 ## Marital status
 def maritalstatus(data):
     
@@ -201,45 +160,45 @@ def religion(data):
 
 
 def PlotAgeSexRace(data): 
-    '''Returns 3 plots with age, sex, and race distributions.
-        TO DO: make the y-axis go up to 1.0 '''
+    '''Returns 3 plots with age, sex, and race distributions.'''
     age = AgeGroup(data)
     sex = SexGroup(data)
     race = RaceGroup(data)
     
     # Figure size
-    plt.figure(1,(5,8))
+    plt.figure(1,(5,11))
         
     ageplot = plt.subplot(3,1,1)
     ageplot.bar(range(10,90), age)
     # Labels for age plot
-    ageplot.title("Age Distribution")
-    ageplot.xlabel("age")
-    ageplot.ylabel("frequency")
+    plt.title("Age Distribution")
+    plt.xlabel("age")
+    plt.ylabel("frequency")
     
     sexplot = plt.subplot(3,1,2)
     sexplot.bar([1,2], [sex[0], sex[1]])
     # labels for sex plot
-    sexplot.title("Gender Distribution")
-    sexplot.xticks([1.5,2.5], ("Male", "Female"))
-    sexplot.ylabel("frequency")
-    
+    plt.title("Gender Distribution")
+    plt.xticks([1.5,2.5], ("Male", "Female"))
+    plt.ylabel("Probabiliy")
+    plt.ylim(0,1)
     raceplot = plt.subplot(3,1,3)
     raceplot.bar([1,2,3], [race[0], race[1], race[2]], 0.5)
-    raceplot.xticks([1.25,2.25,3.25], ('White', 'Black', 'Other'))
-    raceplot.title("Race Distribution")      
-    raceplot.ylabel("frequency")
+    plt.xticks([1.25,2.25,3.25], ('White', 'Black', 'Other'))
+    plt.title("Race Distribution")      
+    plt.ylabel("Probability")
+    plt.ylim(0,1)
+
 
 def PlotIncome(data):
-    '''Returns a plot with income distribution.
-        TO DO: clear up x-axis labeling '''
+    '''Returns a plot with income distribution.'''
     incomegroups = IncomeGroup(data)
     
     # Figure size
     plt.figure(2,(9,5))
     
-    plt.bar(range(0,13,1), incomegroups, 1)
-    plt.xticks([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5, 12.5], ('nan','<1k','1k-3k','3k-4k','4k-5k','5k-6k','6k-7k','7k-8k','8k-10k','10k-15k','15k-20k','20k-25k','>25k'))
+    plt.bar(range(0,13,1), incomegroups[0], 1)
+    plt.xticks(np.arange(0.5,12.5,1), incomegroups[1])
 
 
 def PlotMaritalSexOrnt(data):
@@ -249,14 +208,14 @@ def PlotMaritalSexOrnt(data):
     plt.figure(3, (5,7))
     
     # Marital status plot
-    marplot = plt.subplot(2,1,1)
-    marplot.title("Marital Status")
-    marplot.bar([0, 1, 2, 3, 4], marstate)
-    marplot.xticks([0.5,1.5,2.5,3.5,4.5],("Never married","divorced","married","separated","widowed"))
+    plt.subplot(2,1,1)
+    plt.title("Marital Status")
+    plt.bar([0, 1, 2, 3, 4], marstate[0])
+    plt.xticks(np.arange(0.5, 5.5, 1), marstate[1])
     
     # Sexual Orientation plot
-    sexorntplot = plt.subplot(2,1,2)
-    sexorntplot.title("Sexual orientation")
-    sexorntplot.bar([0,1,2,3], sexornt)
-    sexorntplot.xticks([0.5,1.5,2.5,3.5], ("nan","Bi","gay","straigt"))
+    plt.subplot(2,1,2)
+    plt.title("Sexual orientation")
+    plt.bar([0,1,2,3], sexornt[0])
+    plt.xticks(np.arange(0.5,4.5,1), sexornt[1])
 
