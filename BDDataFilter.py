@@ -11,20 +11,26 @@ def Filter(startyear, category):
     them on a certain category and saves the result as a csv file.'''
     year = startyear
     filtered_data = {}
-    for i in range((2014 - startyear) / 2 + 1):
+    years = []
+    for i in range(28):
+        if year == 1979 or year == 1981 or year == 1984 or year == 1986 or year ==1992:
+            year += 1
+        years.append(str(year))
         data = pd.io.stata.read_stata("GSS" + str(startyear) + ".DTA")
-        if category == religion:
+        if category == "religion":
             religlist  = list(data.relig)
             filtered_data[str(year)] = religlist
         if category == "beliefstrength":
             filtered_data[year] = data.reliten
         # in case of more categories, add them here.
-        year += 2
+        year += 1
+        if year > 1994:
+            year += 1
         
 
     # the code below writes the dictionary to a .pkl file           
-    filtered = pd.DataFrame(filtered_data, columns = ["2010", "2012", "2014"])
-    filtered.save("DATA" + str(startyear) + '_' + str(year) + '_' + str(category))
+    filtered = pd.DataFrame(filtered_data, columns = years)
+    filtered.to_pickle("DATA" + str(startyear) + '_' + str(year) + '_' + str(category))
         
     return
         
