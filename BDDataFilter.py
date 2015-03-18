@@ -16,8 +16,9 @@ def Filter(startyear, category):
         if category == religion:
             religlist  = list(data.relig)
             filtered_data[str(year)] = religlist
-        if category == "beliefstrength":
-            filtered_data[year] = data.reliten
+        if category == beliefstrength:
+            belistrlist = list(data.reliten)
+            filtered_data[str(year)] = belistrlist
         # in case of more categories, add them here.
         year += 2
         
