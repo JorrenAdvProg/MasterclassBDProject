@@ -11,6 +11,7 @@ import pandas as pd
 import scipy as sp
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 data = pd.io.stata.read_stata("GSS2012.DTA")
 
@@ -93,7 +94,24 @@ def IncomeGroup(data):
             
     return incomegroups
 
+def ReligionList(data):
+    religions = []
+    for religion in data.relig:
+        if religion in religions:
+            pass
+        else:
+            religions.append(religion)
+    return religions
 
+def RelDist(data):
+    beliebers = []
+    for belieber in data.relig:
+        beliebers.append(belieber)
+    print type(beliebers)    
+    sns.distplot(beliebers)
+    return 
+    
+RelDist(data)
 ## Marital status
 def maritalstatus(data):
     
