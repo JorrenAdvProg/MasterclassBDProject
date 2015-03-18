@@ -8,7 +8,7 @@ import pandas as pd
 
 def Filter(startyear, category):
     '''This function loads all complete files from a certain period, filters
-    them on a certain category and saves the result as a csv file.'''
+    them on a certain category and saves the result as a Dataframe file.'''
     year = startyear
     filtered_data = {}
     years = []
@@ -16,13 +16,15 @@ def Filter(startyear, category):
         if year == 1979 or year == 1981 or year == 1984 or year == 1986 or year ==1992:
             year += 1
         years.append(str(year))
-        data = pd.io.stata.read_stata("GSS" + str(startyear) + ".DTA")
+        print years
+        data = pd.io.stata.read_stata("GSS" + str(year) + ".DTA")
         if category == "religion":
             religlist  = list(data.relig)
             filtered_data[str(year)] = religlist
-        if category == beliefstrength:
-            belistrlist = list(data.reliten)
-            filtered_data[str(year)] = belistrlist
+        if category == "premarsex":
+            premarsxlist  = list(data.premarsx)
+            filtered_data[str(year)] = premarsxlist
+
         # in case of more categories, add them here.
         year += 1
         if year > 1994:
@@ -35,4 +37,4 @@ def Filter(startyear, category):
         
     return
         
-
+Filter(1972, "religion")

@@ -13,7 +13,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-data = pd.io.stata.read_stata("GSS2012.DTA")
+
+
+data = pd.io.pickle.read_pickle("DATA1972_2016_religion")
+
+
+
 
 ## create age groups
 def AgeGroup(data):
@@ -103,13 +108,7 @@ def ReligionList(data):
             religions.append(religion)
     return religions
 
-def RelDist(data):
-    beliebers = []
-    for belieber in data.relig:
-        beliebers.append(belieber)
-    print type(beliebers)    
-    sns.distplot(beliebers)
-    return 
+
     
 def DistplotIncome(data):
     Inkomens = data.income
