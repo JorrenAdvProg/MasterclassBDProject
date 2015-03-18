@@ -35,7 +35,16 @@ def Filter(startyear, category):
         if year > 1994:
             year += 1
         
-
+    #Make the lists in the dictionary of equal length works at least for religion
+    lengths = []
+    for values in filtered_data.values():
+        lengths.append(len(values))
+    maxlength = max(lengths)    
+    for values in filtered_data.values():
+        if len(values) < maxlength:
+            for i in range(maxlength - len(values)):
+                values.append(0)
+                
     # the code below writes the dictionary to a .pkl file           
     filtered = pd.DataFrame(filtered_data, columns = years)
     filtered.to_pickle("DATA" + str(startyear) + '_' + str(year) + '_' + str(category))
