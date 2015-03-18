@@ -16,11 +16,12 @@ def Filter(startyear, category):
         if year == 1979 or year == 1981 or year == 1984 or year == 1986 or year ==1992:
             year += 1
         years.append(str(year))
-        data = pd.io.stata.read_stata("GSS" + str(startyear) + ".DTA")
+        data = pd.io.stata.read_stata("GSS" + str(year) + ".DTA")
         if category == "religion":
             religlist  = list(data.relig)
             filtered_data[str(year)] = religlist
-        if category == beliefstrength:
+        if category == "beliefstrength":
+            
             belistrlist = list(data.reliten)
             filtered_data[str(year)] = belistrlist
         # in case of more categories, add them here.
@@ -36,3 +37,4 @@ def Filter(startyear, category):
     return
         
 
+## load with pandas.io.pickle.read_pickle(pathfile)
