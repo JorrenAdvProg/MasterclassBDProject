@@ -111,7 +111,37 @@ def RelDist(data):
     sns.distplot(beliebers)
     return 
     
-RelDist(data)
+def DistplotIncome(data):
+    Inkomens = data.income
+    GELD = []
+    for income in Inkomens:
+        if income == 'LT $1000':
+            GELD.append(500)
+        elif income == '$1000 TO 2999':
+            GELD.append(2000)
+        elif income == '$3000 TO 3999':
+            GELD.append(3500)
+        elif income == '$4000 TO 4999':
+            GELD.append(4500)
+        elif income == '$5000 TO 5999':
+            GELD.append(6500)
+        elif income == '$6000 TO 6999':
+            GELD.append(6500)
+        elif income == '$7000 TO 7999':
+            GELD.append(7500)
+        elif income == '$8000 TO 9999':
+            GELD.append(9000)
+        elif income == '$10000 - 14999':
+            GELD.append(12500)
+        elif income == '$15000 - 19999':
+            GELD.append(17500)
+        elif income == '$20000 - 24999':
+            GELD.append(22500)
+        elif income == '$25000 OR MORE':
+            GELD.append(30000)
+            
+    sns.distplot(GELD)
+            
 ## Marital status
 def maritalstatus(data):
     
@@ -145,6 +175,7 @@ def sexualorientation(data):
     
 def degree(data):
     degree = [[0, 0, 0, 0, 0], ('High school', 'Junior college', 'LT high school', 'bachelor', 'graduate')]
+    total = 0    
     for degree in data.degree:
         if degree == 'HIGH SCHOOL':
             degree[0][0] += 1
@@ -156,25 +187,52 @@ def degree(data):
             degree[0][3] += 1
         if degree == 'graduate':
             degree[0][4] += 1
+        total += 1
+        
+    degree[0] = np.array(degree[0])
+    degree[0] = degree[0]/total
     return degree
-            
+   
+## data.reliten gives strength of affiliation with religion, data.postlife         
+## SUGGESTION compare religions, strenght with attitudes for drugs, sex, partyid
+## time series for strenght of religion, or change of views of certain groups
 def religion(data):
-    religions = [[0,0,0,0,0,0],("Christian","Jewish","Hinduism/Buddhism", "Islam","Other", "none")]
+    religions = {}
     for religion in data.relig:
-        if religion == "ORTHODOX-CHRISTIAN" or religion == "catholic" or religion == "christian" or religion == "protestant":
-            religions[0][0] += 1
-        if religion == "jewish":
-            religions[0][1] += 1
-        if religion == "buddhism" or religion == "hinduism":
-            religions[0][2] += 1
-        if religion == "MOSLEM/ISLAM":
-            religions[0][3] += 1
-        if religion == "none":
-            religions[0][5] += 1
+        if religion in religions:
+            religions[religion] += 1
         else:
-            religions[0][4] += 1
+            religions[religion] = 1
             
     return religions
+    
+
+def workstat(data):
+    workstats = [[0,0,0,0,0,0,0,0], ('other','Keeping House', 'Temp. not working', 
+                 'Unemployed','Fulltime', 'Parttime', 'Retired', 'School')]
+    total = 0 
+    for wrkstat in data.wrkstat:
+        if wrkstat == 'nan' or wrkstat == 'other':
+            workstats[0][0] += 1
+        elif wrkstat == 'KEEPING HOUSE':
+            workstats[0][1] += 1
+        elif wrkstat == 'TEMP NOT WORKING':
+            workstats[0][2] += 1
+        elif wrkstat == 'UNEMPL, LAID OFF':
+            workstats[0][3] += 1
+        elif wrkstat == 'WORKING FULLTIME':
+            workstats[0][4] += 1
+        elif wrkstat == 'WORKING PARTTIME':
+            workstats[0][5] += 1
+        elif wrkstat == 'retired':
+            workstats[0][6] += 1
+        elif wrkstat == 'school':
+            workstats[0][7] += 1
+        total += 1
+    
+    workstats[0] = np.array(workstats[0])
+    workstats[0] = workstats[0]/total        
+    return workstats
 
 
 def PlotAgeSexRace(data): 
@@ -237,3 +295,9 @@ def PlotMaritalSexOrnt(data):
     plt.bar([0,1,2,3], sexornt[0])
     plt.xticks(np.arange(0.5,4.5,1), sexornt[1])
 
+def PlotWorkStats(data):
+    workstats = workstat(data)
+    plt.figure(1,(8,5))
+    plt.title("Work statistics")
+    plt.bar([0,1,2,3,4,5,6,7], workstats[0])
+    plt.xticks(np.arange(0.5,9.5,1), workstats[1], rotation = 90)

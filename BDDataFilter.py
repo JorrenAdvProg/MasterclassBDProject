@@ -22,7 +22,7 @@ def Filter(startyear, category):
         year += 2
         
 
-    # the code below writes the dictionary to a .csv file           
+    # the code below writes the dictionary to a .pkl file           
     filtered = pd.DataFrame(filtered_data, columns = ["2010", "2012", "2014"])
     filtered.save("DATA" + str(startyear) + '_' + str(year) + '_' + str(category))
         
