@@ -32,9 +32,24 @@ def listofyears():
         if year > 1994:
             year += 1
     return listofyears
+
+def Retrievedistribution(column):
+    dictionary = {}
+    population = 0
+    for value in column:
+        if value in dictionary:
+            dictionary[value] += 1
+        else:
+            dictionary [value] = 1
+        if value != 0 and value != 'nan':
+            population += 1            
         
+    
+    listoffrequencies = dictionary.values()
         
+    
         
+    
 
 def Loopoveryears(Religionlist, belief, others):
     year = 1972
