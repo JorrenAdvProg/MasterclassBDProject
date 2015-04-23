@@ -15,9 +15,9 @@ import seaborn as sns
 
 
 
-data = pd.io.pickle.read_pickle("DATA1972_2016_religion")
+#data = pd.io.pickle.read_pickle("DATA1972_2016_religion")
 
-
+data = pd.io.stata.read_stata("GSS2000.dta")
 
 
 ## create age groups
@@ -300,3 +300,8 @@ def PlotWorkStats(data):
     plt.title("Work statistics")
     plt.bar([0,1,2,3,4,5,6,7], workstats[0])
     plt.xticks(np.arange(0.5,9.5,1), workstats[1], rotation = 90)
+    
+def Entropy(data, param1, param2):
+    entropy = sp.stats.entropy(param1, param2)
+    return entropy
+    
